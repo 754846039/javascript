@@ -62,3 +62,5 @@ var mySwiper = new Swiper ('.swiper-container', {
     scrollbar: '.swiper-scrollbar',
 })
 ```
+
+###### 【注意】移动端设置container的宽度时不能使用rem，否则轮播会错位，应该用百分比
