@@ -88,3 +88,6 @@
 - [iscroll](?file=003_插件/009_iscroll "iscroll")
 - [统计图表](?file=003_插件/010_统计图表 "统计图表")
 - [地图API](?file=003_插件/011_地图API "地图API")
+
+##### ES6
+- [let和const](?file=004_ES6/001_let和const "let和const")
