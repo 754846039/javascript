@@ -5,6 +5,7 @@
 ### Object.create()
 >该方法可以创建一个拥有指定原型和若干个指定属性的对象。<br/>
 >Object.create(proto, [ propertiesObject ]) 是ES5中提出的一种新的对象创建方式，第一个参数是要继承的原型，如果不是一个子函数，可以传一个null，第二个参数是对象的属性描述符，这个参数是可选的。
+
 * 数据属性:
   * writable:是否可任意写
   * configurable：是否能够删除

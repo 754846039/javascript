@@ -3,6 +3,7 @@
 ## 解构赋值
 ### 对象的解构赋值
 * 对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
+
 ```javascript
 var {b,a} = {a:"aaa",b:"bbb"};
 console.log(a) // "aaa"
@@ -13,6 +14,7 @@ console.log(c) // undefined
 ```
 
 * 如果变量名与属性名不一致
+
 ```javascript
 var {a:c} = {a:"aaa",b:"bbb"};
 console.log(c) // "aaa"
@@ -35,6 +37,7 @@ let命令下面一行的圆括号是必须的，否则会报错。因为解析�
 
 ### 字符串的解构赋值
   * 字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象。
+
   ```javascript
   const [a, b, c, d, e] = 'hello';
   console.log(a) // "h"
@@ -45,61 +48,68 @@ let命令下面一行的圆括号是必须的，否则会报错。因为解析�
   ```
 
   * 类似数组的对象都有一个length属性，因此还可以对这个属性解构赋值。
+
   ```javascript
   let {length : len} = 'hello';
   console.log(len) // 5
   ```
 
 ### 数值的解构赋值
-  解构赋值时，如果等号右边是数值，则会先转为对象。
-  ```javascript
-  let {toString: s} = 123;
-  s === Number.prototype.toString // true
-  ```
+解构赋值时，如果等号右边是数值，则会先转为对象。
+
+```javascript
+let {toString: s} = 123;
+s === Number.prototype.toString // true
+```
 
 ### 布尔值的解构赋值
-  数值和布尔值的包装对象都有toString属性，因此变量s都能取到值。
-  ```javascript
-  let {toString: s} = true;
-  s === Boolean.prototype.toString // true
-  ```
+数值和布尔值的包装对象都有toString属性，因此变量s都能取到值。
+
+```javascript
+let {toString: s} = true;
+s === Boolean.prototype.toString // true
+```
 
 ### null和undefined的解构赋值
-  解构赋值的规则是，只要等号右边的值不是对象，就先将其转为对象。<br/>
-  由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错。
-  ```javascript
-  let { prop: x } = undefined; // 报错
-  let { prop: y } = null; // 报错
-  ```
+解构赋值的规则是，只要等号右边的值不是对象，就先将其转为对象。<br/>
+由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错。
+
+```javascript
+let { prop: x } = undefined; // 报错
+let { prop: y } = null; // 报错
+```
 
 ### 函数参数的解构赋值
 * 函数的参数也可以使用解构赋值。
+
   ```javascript
   function add([x, y]){
       return x + y;
   }
   add([1, 2]); // 3
   ```
+
   上面代码中，函数add的参数表面上是一个数组，但在传入参数的那一刻，数组参数就被解构成变量x和y。对于函数内部的代码来说，它们能感受到的参数就是x和y。
 
 * 默认值
- ```javascript
- function move1({x = 0, y = 0} = {}) {
-     return [x, y];
- }
- console.log(move1({x: 3, y: 8})); // [3, 8]
- console.log(move1({x: 3}));       // [3, 0]
- console.log(move1({}));           // [0, 0]
- console.log(move1());             // [0, 0]
 
- function move2({x, y} = { x: 0, y: 0 }) {
+  ```javascript
+  function move1({x = 0, y = 0} = {}) {
      return [x, y];
- }
- console.log(move2({x: 3, y: 8})); // [3, 8]
- console.log(move2({x: 3}));       // [3, undefined]  {x,y}={x:3}
- console.log(move2({}));           // [undefined, undefined]  {x,y}={}
- console.log(move2());             // [0, 0]
- ```
+  }
+  console.log(move1({x: 3, y: 8})); // [3, 8]
+  console.log(move1({x: 3}));       // [3, 0]
+  console.log(move1({}));           // [0, 0]
+  console.log(move1());             // [0, 0]
+
+  function move2({x, y} = { x: 0, y: 0 }) {
+     return [x, y];
+  }
+  console.log(move2({x: 3, y: 8})); // [3, 8]
+  console.log(move2({x: 3}));       // [3, undefined]  {x,y}={x:3}
+  console.log(move2({}));           // [undefined, undefined]  {x,y}={}
+  console.log(move2());             // [0, 0]
+  ```
 
 ### 圆括号的问题
 >解构赋值虽然很方便，但是解析起来并不容易。对于编译器来说，一个式子到底是模式，还是表达式，没有办法从一开始就知道，必须解析到（或解析不到）等号才能知道。
